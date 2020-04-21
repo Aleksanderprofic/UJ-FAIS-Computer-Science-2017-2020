@@ -1,0 +1,5 @@
+zaprojektowanym w celu maksymalizacji wydajności baterii.
+Aby uzyskać dokładne prognozy dotyczące pozostałego poziomu naładowania akumulatora, bateria i jej procesor muszą przejść procedurę kalibracji.
+Procedura kalibracji pomaga procesorowi mierzyć aktualną wydajność baterii i precyzyjnie przewidywać pozostały poziom naładowania baterii.
+Kiedy kalibrować baterię
+Podczas zakupu komputera MacBook, MacBook Pro lub MacBook Air należy uruchomić procedurę kalibracji baterii podczas pierwszego dnia pracy 
