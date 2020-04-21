@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane prefHeight="580.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mandelbrot.Controller">
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2">
+        <tabs>
+            <Tab text="Sierpiński">
+                <content>
+                    <GridPane alignment="center" hgap="10" prefHeight="512.0" prefWidth="533.0" stylesheets="@main.css" vgap="10">
+                        <Canvas fx:id="canvas" height="512.0" onMouseDragged="#mouseMoves" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" width="512" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowSpan="7" GridPane.valignment="CENTER" />
+                        <Button minWidth="100" onAction="#clearCanvas" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button minWidth="100" onAction="#drawRect" text="Rectangle" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button minWidth="100" onAction="#draw" text="Draw" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button minWidth="100" onAction="#sayHello" text="Hello" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="label" prefHeight="0.0" prefWidth="622.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                        <columnConstraints>
+                            <ColumnConstraints />
+                            <ColumnConstraints />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints valignment="BOTTOM" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                    </GridPane>
+                </content>
+            </Tab>
+            <Tab onSelectionChanged="#mandel" text="Mandelbrot">
+                <content>
+                    <GridPane alignment="center" hgap="10" prefHeight="512.0" prefWidth="533.0" vgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="515.0" minWidth="10.0" prefWidth="511.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="111.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="547.0" minHeight="10.0" prefHeight="547.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="502.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                            <Canvas fx:id="canvas2" height="512.0" onMouseDragged="#mouseMoves" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" width="512.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowSpan="2" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES" />
+
+                            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                <children>
+                                    <Button mnemonicParsing="false" onAction="#clearCanvas2" prefHeight="27.0" prefWidth="91.0" stylesheets="@main.css" text="Clear" textAlignment="CENTER">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                        <VBox.margin>
+                                            <Insets bottom="15.0" top="10.0" />
+                                        </VBox.margin></Button>
+                                    <Button mnemonicParsing="false" onAction="#drawMandelbrot" prefHeight="27.0" prefWidth="91.0" stylesheets="@main.css" text="Draw">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                        <VBox.margin>
+                                            <Insets bottom="10.0" />
+                                        </VBox.margin></Button>
+                                    <Separator prefWidth="200.0" stylesheets="@main.css">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                        <VBox.margin>
+                                            <Insets bottom="5.0" top="5.0" />
+                                        </VBox.margin></Separator>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="77.0" text="COMPLEX P" textAlignment="CENTER" textFill="RED">
+                                        <VBox.margin>
+                                            <Insets bottom="2.0" />
+                                        </VBox.margin></Label>
+                                    <Label alignment="CENTER" layoutX="10.0" layoutY="108.0" stylesheets="@main.css" text="1st re number:">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" />
+                                        </VBox.margin></Label>
+                                    <TextField fx:id="firstR" layoutX="10.0" layoutY="125.0" onKeyTyped="#setFirstR" prefHeight="27.0" prefWidth="88.0" stylesheets="@main.css" text="-2.0">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" left="5.0" right="5.0" />
+                                        </VBox.margin></TextField>
+                                    <Label alignment="CENTER" layoutX="10.0" layoutY="152.0" stylesheets="@main.css" text="1st im number:">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" />
+                                        </VBox.margin></Label>
+                                    <TextField fx:id="firstI" layoutX="10.0" layoutY="169.0" onKeyTyped="#setFirstI" stylesheets="@main.css" text="2.0">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" left="5.0" right="5.0" />
+                                        </VBox.margin></TextField>
+                                    <Label layoutX="10.0" layoutY="240.0" stylesheets="@main.css" text="2nd re number:">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" />
+                                        </VBox.margin></Label>
+                                    <TextField fx:id="secondR" layoutX="10.0" layoutY="257.0" onKeyTyped="#setSecondR" stylesheets="@main.css" text="1.5">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" left="5.0" right="5.0" />
+                                        </VBox.margin></TextField>
+                                    <Label alignment="CENTER" layoutX="10.0" layoutY="203.0" stylesheets="@main.css" text="2nd im number:">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" left="2.0" right="2.0" />
+                                        </VBox.margin></Label>
+                                    <TextField fx:id="secondI" layoutX="10.0" layoutY="220.0" onKeyTyped="#setSecondI" stylesheets="@main.css" text="-1.8">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" left="5.0" right="5.0" />
+                                        </VBox.margin></TextField>
+                                    <Separator layoutX="10.0" layoutY="86.0" prefWidth="200.0" stylesheets="@main.css">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                        <VBox.margin>
+                                            <Insets bottom="5.0" top="5.0" />
+                                        </VBox.margin>
+                                    </Separator>
+                                    <Label layoutX="10.0" layoutY="264.0" stylesheets="@main.css" text="R">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" />
+                                        </VBox.margin></Label>
+                                    <TextField fx:id="parR" alignment="CENTER" layoutX="10.0" layoutY="281.0" onKeyTyped="#setR" stylesheets="@main.css" text="2.0">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" left="5.0" right="5.0" />
+                                        </VBox.margin></TextField>
+                                    <Separator layoutX="10.0" layoutY="509.0" prefWidth="200.0" stylesheets="@main.css">
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                        <VBox.margin>
+                                            <Insets bottom="5.0" top="5.0" />
+                                        </VBox.margin>
+                                    </Separator>
+                                    <Label layoutX="10.0" layoutY="325.0" stylesheets="@main.css" text="WIDTH">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" />
+                                        </VBox.margin></Label>
+                                    <TextField fx:id="w" alignment="CENTER" layoutX="10.0" layoutY="342.0" onKeyTyped="#setWIDTH" stylesheets="@main.css" text="512">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" left="5.0" right="5.0" />
+                                        </VBox.margin></TextField>
+                                    <Label layoutX="10.0" layoutY="369.0" stylesheets="@main.css" text="HEIGHT">
+                                        <VBox.margin>
+                                            <Insets bottom="4.0" />
+                                        </VBox.margin></Label>
+                                    <TextField fx:id="h" alignment="CENTER" layoutX="10.0" layoutY="386.0" onKeyTyped="#setHEIGHT" stylesheets="@main.css" text="512">
+                                        <VBox.margin>
+                                            <Insets bottom="5.0" left="5.0" right="5.0" />
+                                        </VBox.margin></TextField>
+                                </children>
+                            </VBox>
+                            <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" />
+                        </children>
+                    </GridPane>
+                </content></Tab>
+        </tabs>
+    </TabPane>
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints minWidth="650.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="580.0" />
+    </rowConstraints>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+</GridPane>
